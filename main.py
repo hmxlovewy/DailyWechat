@@ -44,10 +44,10 @@ def get_birthday(birthday):
 
 
 if __name__ == '__main__':
-    app_id = "wxa163ec1ac8b8be62"
-    app_secret = "b617c0a09f2a2035adb43e25247a479f"
-    template_id = "PfRRYh1wNS6oZKLFNATVKWbTLdlxmyCkBMgxuC20vPM"
-    weather_key = "PSz5kEz9zTJ2V4Wvql"
+    app_id = os.getenv("wxa163ec1ac8b8be62")
+    app_secret = os.getenv("b617c0a09f2a2035adb43e25247a479f")
+    template_id = os.getenv("PfRRYh1wNS6oZKLFNATVKWbTLdlxmyCkBMgxuC20vPM")
+    weather_key = os.getenv("P0IAFVRmfBx-1p5kC")
 
     client = WeChatClient(app_id, app_secret)
     wm = WeChatMessage(client)
@@ -56,7 +56,7 @@ if __name__ == '__main__':
     js_text = json.load(f)
     f.close()
     data = js_text['data']
-    print(weather_key)
+    print(weather_key,app_id,app_secret,template_id)
     num = 0
     words=get_words()
     out_time=get_time()
@@ -72,7 +72,6 @@ if __name__ == '__main__':
 
 
         wea_city,weather = get_weather(city,weather_key)
-        print(wea_city, weather)
         data = dict()
         data['time'] = {'value': out_time}
         data['words'] = {'value': words}
