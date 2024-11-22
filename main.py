@@ -47,7 +47,7 @@ def get_birthday(birthday):
 if __name__ == '__main__':
     app_id = "wxa163ec1ac8b8be62"
     app_secret = "b617c0a09f2a2035adb43e25247a479f"
-    template_id = "PfRRYh1wNS6oZKLFNATVKWbTLdlxmyCkBMgxuC20vPM"
+    template_id = "6kzKMDXDHyCP1Gso4VPBj3zfCs_7iKJhir4c9slzhdI"
     weather_key = "Sz5kEz9zTJ2V4Wvql"
 
     client = WeChatClient(app_id, app_secret)
