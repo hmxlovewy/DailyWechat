@@ -56,6 +56,7 @@ if __name__ == '__main__':
     js_text = json.load(f)
     f.close()
     data = js_text['data']
+    print(data)
     num = 0
     words=get_words()
     out_time=get_time()
