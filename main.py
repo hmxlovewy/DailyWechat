@@ -12,8 +12,14 @@ today = datetime.strptime(str(nowtime.date()), "%Y-%m-%d")
 def get_time():
     dictDate = {'Monday': '星期一', 'Tuesday': '星期二', 'Wednesday': '星期三', 'Thursday': '星期四',
                 'Friday': '星期五', 'Saturday': '星期六', 'Sunday': '星期天'}
+
+    # 获取当前时间的年、月、日部分，并格式化为"yyyy-mm-dd"的字符串形式
+    current_date_str = nowtime.strftime("%Y-%m-%d")
+
+    # 根据当前时间的星期几（通过nowtime.strftime('%A')获取英文星期名称），从字典中获取对应的中文星期表述
     a = dictDate[nowtime.strftime('%A')]
-    return nowtime.strftime("%Y年%m月%d日") + a
+
+    return current_date_str + " " + a
 
 
 def get_words():
@@ -25,7 +31,7 @@ def get_words():
 
 def get_weather(city, key):
     url = f"https://api.seniverse.com/v3/weather/daily.json?key={key}&location={city}&language=zh-Hans&unit=c&start=-1&days=5"
-    print(url)
+    # print(url)
     res = requests.get(url).json()
     print(res)
     weather = (res['results'][0])["daily"][0]
@@ -47,7 +53,7 @@ def get_birthday(birthday):
 if __name__ == '__main__':
     app_id = "wxa163ec1ac8b8be62"
     app_secret = "b617c0a09f2a2035adb43e25247a479f"
-    template_id = "6kzKMDXDHyCP1Gso4VPBj3zfCs_7iKJhir4c9slzhdI"
+    template_id = "qnKXXPl051xTfThkgNuwYZbQDJ3dE05Gyq0gW8Of6Is"
     weather_key = "Sz5kEz9zTJ2V4Wvql"
 
     client = WeChatClient(app_id, app_secret)
@@ -57,12 +63,11 @@ if __name__ == '__main__':
     js_text = json.load(f)
     f.close()
     data = js_text['data']
-    print(weather_key,app_id,app_secret,template_id)
+
     num = 0
     words=get_words()
     out_time=get_time()
-
-    print(words, out_time)
+    print(out_time.encode('utf-8'))
 
     for user_info in data:
         born_date = user_info['born_date']
@@ -84,8 +89,10 @@ if __name__ == '__main__':
         data['birthday_left'] = {'value': get_birthday(birthday)}
         data['wind'] = {'value': weather['wind_direction']}
         data['name'] = {'value': name}
+        print(data)
 
         res = wm.send_template(user_id, template_id, data)
         print(res)
         num += 1
     print(f"成功发送{num}条信息")
+
