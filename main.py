@@ -72,6 +72,7 @@ if __name__ == '__main__':
 
 
         wea_city,weather = get_weather(city,weather_key)
+        print(wea_city, weather)
         data = dict()
         data['time'] = {'value': out_time}
         data['words'] = {'value': words}
