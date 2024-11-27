@@ -23,11 +23,11 @@ def get_time():
 
 
 def get_words():
-    words = requests.get("https://tenapi.cn/v2/yiyan?format=json").json()
+    words = requests.get("https://www.mxnzp.com/api/daily_word/recommend?app_secret={}&app_id={}".format(Word_app_secret,Word_app_id)).json()
     print(words)
     if words['code'] != 200:
         return get_words()
-    return words['data']['hitokoto']
+    return words['data'][0]['content']
 
 def get_weather(city, key):
     url = f"https://api.seniverse.com/v3/weather/daily.json?key={key}&location={city}&language=zh-Hans&unit=c&start=-1&days=5"
@@ -55,6 +55,10 @@ if __name__ == '__main__':
     app_secret = os.getenv("APP_SECRET")
     template_id = os.getenv("TEMPLATE_ID")
     weather_key = os.getenv("WEATHER_API_KEY")
+
+    # 文新一言api
+    Word_app_id = os.getenv('WORD_APP_ID')
+    Word_app_secret = os.getenv('WORD_APP_SECRET')
 
     client = WeChatClient(app_id, app_secret)
     wm = WeChatMessage(client)
@@ -95,4 +99,5 @@ if __name__ == '__main__':
         print(res)
         num += 1
     print(f"成功发送{num}条信息")
+
 
