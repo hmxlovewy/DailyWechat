@@ -23,10 +23,10 @@ def get_time():
 
 
 def get_words():
-    words = requests.get("https://www.mxnzp.com/api/daily_word/recommend?app_secret={}&app_id={}".format(Word_app_secret,Word_app_id)).json()
-    print(words)
-    if words['code'] != 200:
-        return get_words()
+    words = requests.get("https://www.mxnzp.com/api/daily_word/recommend?app_secret=vTv0GKQOD3aV3LA5fMHdXzU0vQgHT1tj&app_id=rslckmrpgnunepdi").json()
+    # print(words)
+    #if words['code'] != 200:
+        #return get_words()
     return words['data'][0]['content']
 
 def get_weather(city, key):
@@ -56,9 +56,6 @@ if __name__ == '__main__':
     template_id = os.getenv("TEMPLATE_ID")
     weather_key = os.getenv("WEATHER_API_KEY")
 
-    # 文新一言api
-    Word_app_id = os.getenv('WORD_APP_ID')
-    Word_app_secret = os.getenv('WORD_APP_SECRET')
 
     client = WeChatClient(app_id, app_secret)
     wm = WeChatMessage(client)
@@ -71,7 +68,8 @@ if __name__ == '__main__':
     num = 0
     words=get_words()
     out_time=get_time()
-    print(out_time.encode('utf-8'))
+    print(words)
+    # print(out_time.encode('utf-8'))
 
     for user_info in data:
         born_date = user_info['born_date']
