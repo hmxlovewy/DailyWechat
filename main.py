@@ -23,8 +23,8 @@ def get_time():
 
 
 def get_words(Word_secret,Word_id):
-    words = requests.get("https://www.mxnzp.com/api/daily_word/recommend?app_secret={}&app_id={}".format(Word_secret,Word_id)).json()
-    #print(words)
+    words = requests.get(f"https://www.mxnzp.com/api/daily_word/recommend?app_secret={Word_secret}&app_id={Word_id}").json()
+    print(words)
     #if words['code'] != 200:
     #    return get_words()
     return words['data'][0]['content']
