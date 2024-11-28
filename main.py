@@ -58,8 +58,8 @@ if __name__ == '__main__':
     weather_key = os.getenv("WEATHER_API_KEY")
 
     # 文新一言api
-    Word_app_id = os.getenv('WORD_APP_ID')
-    Word_app_secret = os.getenv('WORD_APP_SECRET')
+    Word_app_id = 'rslckmrpgnunepdi'
+    Word_app_secret = 'vTv0GKQOD3aV3LA5fMHdXzU0vQgHT1tj'
 
     client = WeChatClient(app_id, app_secret)
     wm = WeChatMessage(client)
