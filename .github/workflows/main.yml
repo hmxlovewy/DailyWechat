@@ -27,3 +27,6 @@ jobs:
       APP_SECRET: ${{ secrets.APP_SECRET }}
       TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
       WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+
+      WORD_APP_ID: ${{ secrets.WORD_APP_ID }}
+      WORD_APP_SECRET: ${{ secrets.WORD_APP_SECRET }}
